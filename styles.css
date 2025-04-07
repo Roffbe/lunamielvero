@@ -1,0 +1,140 @@
+/* styles.css */
+
+/* Fondo global de la página (playa general) */
+body {
+    font-family: 'Pacifico', cursive;
+    margin: 0;
+    padding: 0;
+    background: url('imagenes/fondo.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+    background-blur: 10px;
+    overflow-y: auto;
+}
+
+/* Título principal de la app (LUNA DE MIEL) */
+.main-title {
+    width: 100%;
+    padding: 30px;
+    font-size: 5rem;
+    color: #ff6347;
+    font-family: 'Lobster', cursive;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6), 0 0 25px #ff6347, 0 0 5px darkorange;
+    letter-spacing: 5px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo transparente */
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    z-index: 1; /* Asegura que el título esté al frente pero sin interferir con las ciudades */
+}
+
+/* Contenedor de relojes y ciudades */
+.container {
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 20px;
+    padding: 40px;
+    width: 90%;
+    max-width: 800px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    text-align: center;
+    margin-top: 100px; /* Aseguramos que el contenido esté debajo del título */
+}
+
+/* Estilo del recuadro de cada ciudad */
+.clock {
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+    position: relative;
+}
+
+/* Contenedor para la información de la ciudad (nombre, hora y clima) */
+.city-info {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    text-align: center;
+    z-index: 2;
+}
+
+/* Nombre de la ciudad sobre la imagen (mayúsculas y más grande) */
+.city-name {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #ff6347;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+    text-transform: uppercase;
+}
+
+/* Estilo para las imágenes de cada ciudad */
+.clock img {
+    width: 100%; /* Hacemos que la imagen ocupe el 100% del recuadro */
+    height: 100%; /* Aseguramos que la imagen cubra todo el recuadro */
+    object-fit: cover; /* Asegura que la imagen cubra todo el recuadro sin deformarse */
+    border-radius: 10px;
+}
+
+/* Información de la hora */
+.time-info {
+    margin-top: 10px;
+    font-size: 1.8rem;
+    color: #ff6347;
+}
+
+/* Hora */
+p {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #ff6347;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+/* Contenedor para las temperaturas (en la parte inferior de cada imagen) */
+.weather-info {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+/* Ajuste para que las temperaturas no se salgan del recuadro */
+.weather-info span {
+    font-size: 2rem;
+    color: #ff6347; /* Color rojo, igual que la hora */
+    margin-left: 10px; /* Reducimos el margen izquierdo para el espaciado */
+    margin-right: 10px; /* Reducimos el margen derecho para el espaciado */
+}
+
+/* Efectos al pasar el mouse sobre las ciudades */
+.clock:hover {
+    transform: translateY(-10px);
+}
+
+/* Quitar subrayado de los enlaces */
+a {
+    text-decoration: none;
+}
