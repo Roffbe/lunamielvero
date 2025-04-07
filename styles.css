@@ -1,3 +1,4 @@
+
 /* styles.css */
 
 /* Fondo global de la página (playa general) */
@@ -112,21 +113,20 @@ p {
 /* Contenedor para las temperaturas (en la parte inferior de cada imagen) */
 .weather-info {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     width: 100%;
     position: absolute;
-    bottom: 20px;
+    bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 2;
 }
 
-/* Ajuste para que las temperaturas no se salgan del recuadro */
+/* Ajuste para que las temperaturas estén mejor alineadas */
 .weather-info span {
     font-size: 2rem;
     color: #ff6347; /* Color rojo, igual que la hora */
-    margin-left: 10px; /* Reducimos el margen izquierdo para el espaciado */
-    margin-right: 10px; /* Reducimos el margen derecho para el espaciado */
+    margin: 0 10px; /* Reducido margen para las temperaturas */
 }
 
 /* Efectos al pasar el mouse sobre las ciudades */

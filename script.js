@@ -1,59 +1,51 @@
-
 // script.js
 
-const apiKey = '1ad79901b9e849f3927210440250704'; // Tu clave API
+const apiKey = '1ad79901b9e849f3927210440250704'; // Tu API Key de WeatherAPI
 
-// Función para obtener la hora en formato 24 horas
-function obtenerHora(ciudad) {
-    const fecha = new Date();
-    let hora = fecha.toLocaleString('en-US', { 
-        timeZone: ciudad,
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: false  // Usamos formato de 24 horas
-    });
-    return hora;
+// Función para obtener las temperaturas de una ciudad
+function obtenerTemperaturas(ciudad, idCiudad) {
+    fetch(`https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${ciudad}&days=2&aqi=no&alerts=no`)
+        .then(response => response.json())
+        .then(data => {
+            // Obtener la información de las temperaturas de hoy
+            const tempHoyMax = data.forecast.forecastday[0].day.maxtemp_c;
+            const tempHoyMin = data.forecast.forecastday[0].day.mintemp_c;
+
+            // Obtener la información de las temperaturas de mañana
+            const tempMananaMax = data.forecast.forecastday[1].day.maxtemp_c;
+            const tempMananaMin = data.forecast.forecastday[1].day.mintemp_c;
+
+            // Actualizar el HTML con las temperaturas
+            document.getElementById(`${idCiudad}-today-max`).textContent = `${tempHoyMax}°C`;
+            document.getElementById(`${idCiudad}-today-min`).textContent = `${tempHoyMin}°C`;
+            document.getElementById(`${idCiudad}-next-max`).textContent = `${tempMananaMax}°C`;
+            document.getElementById(`${idCiudad}-next-min`).textContent = `${tempMananaMin}°C`;
+        })
+        .catch(error => console.error('Error al obtener los datos del clima:', error));
 }
 
-// Función para obtener el tiempo de una ciudad usando la API
-async function obtenerTiempo(ciudad) {
-    const url = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${ciudad}&days=2`;
-    try {
-        const response = await fetch(url);
-        const data = await response.json();
-        console.log(data); // Verificamos si la respuesta contiene los datos correctamente
-        return data;
-    } catch (error) {
-        console.error("Error al obtener los datos del tiempo:", error);
-    }
+// Función para actualizar la hora
+function actualizarHora() {
+    const opciones = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+
+    // Usamos zonas horarias específicas para cada ciudad
+    const horaMadrid = new Date().toLocaleString("es-ES", { ...opciones, timeZone: 'Europe/Madrid' });  // Hora de Madrid
+    const horaNewYork = new Date().toLocaleString("en-US", { ...opciones, timeZone: 'America/New_York' });  // Hora de Nueva York
+    const horaVegas = new Date().toLocaleString("en-US", { ...opciones, timeZone: 'America/Los_Angeles' });  // Hora de Las Vegas
+    const horaCancun = new Date().toLocaleString("es-MX", { ...opciones, timeZone: 'America/Cancun' });  // Hora de Cancún
+    
+    // Actualizamos la hora de cada ciudad
+    document.getElementById('madrid-time').textContent = horaMadrid;
+    document.getElementById('newyork-time').textContent = horaNewYork;
+    document.getElementById('vegas-time').textContent = horaVegas;
+    document.getElementById('cancun-time').textContent = horaCancun;
 }
 
-// Actualizar la hora y el tiempo en las ciudades
-async function actualizarDatos() {
-    // Mapeo de las ciudades con sus respectivas zonas horarias
-    const ciudades = {
-        madrid: 'Europe/Madrid',
-        newyork: 'America/New_York',
-        vegas: 'America/Los_Angeles',
-        cancun: 'America/Cancun'
-    };
+// Ejecutamos la función cada segundo para actualizar la hora
+setInterval(actualizarHora, 1000);
 
-    // Recorremos cada ciudad
-    for (let ciudad in ciudades) {
-        const tiempo = await obtenerTiempo(ciudades[ciudad]);
-
-        // Verificamos si se han recibido datos correctamente
-        if (tiempo) {
-            // Actualizamos la hora
-            document.getElementById(`${ciudad}-time`).innerText = obtenerHora(ciudades[ciudad]);
-
-            // Actualizamos las temperaturas
-            document.getElementById(`${ciudad}-today`).innerText = `Hoy: ${tiempo.current.temp_c}°C`;
-            document.getElementById(`${ciudad}-next`).innerText = `Mañana: ${tiempo.forecast.forecastday[1].day.avgtemp_c}°C`;
-        }
-    }
-}
-
-// Llamamos a la función para actualizar los datos
-actualizarDatos();
+// Llamamos a la función para obtener las temperaturas de cada ciudad
+obtenerTemperaturas('Madrid', 'madrid');
+obtenerTemperaturas('New York', 'newyork');
+obtenerTemperaturas('Las Vegas', 'vegas');
+obtenerTemperaturas('Cancun', 'cancun');
