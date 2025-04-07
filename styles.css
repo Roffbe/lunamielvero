@@ -1,140 +1,124 @@
-
-/* styles.css */
-
-/* Fondo global de la página (playa general) */
-body {
-    font-family: 'Pacifico', cursive;
+/* Estilos básicos */
+* {
     margin: 0;
     padding: 0;
-    background: url('imagenes/fondo.jpg') no-repeat center center fixed;
+    box-sizing: border-box;
+}
+
+/* Fondo general */
+body {
+    font-family: 'Pacifico', sans-serif;
+    background-color: #f1f1f1;
+    background-image: url('imagenes/fondo.jpg');
     background-size: cover;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    min-height: 100vh;
-    text-align: center;
-    background-blur: 10px;
-    overflow-y: auto;
+    background-position: center center;
+    color: white;
+    padding: 0;
+    margin: 0;
 }
 
-/* Título principal de la app (LUNA DE MIEL) */
-.main-title {
-    width: 100%;
-    padding: 30px;
-    font-size: 5rem;
-    color: #ff6347;
-    font-family: 'Lobster', cursive;
-    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6), 0 0 25px #ff6347, 0 0 5px darkorange;
-    letter-spacing: 5px;
+/* Título principal */
+.header {
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.5); /* Fondo transparente */
-    padding: 20px;
-    border-radius: 10px;
-    margin-top: 20px;
-    z-index: 1; /* Asegura que el título esté al frente pero sin interferir con las ciudades */
+    padding-top: 40px;
 }
 
-/* Contenedor de relojes y ciudades */
+h1 {
+    font-family: 'Lobster', sans-serif;
+    font-size: 50px;
+    color: #ff4081;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+    margin-bottom: 20px;
+}
+
+/* Contenedor de las ciudades */
 .container {
-    background: rgba(0, 0, 0, 0.6);
-    border-radius: 20px;
-    padding: 40px;
-    width: 90%;
-    max-width: 800px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(5px);
-    text-align: center;
-    margin-top: 100px; /* Aseguramos que el contenido esté debajo del título */
-}
-
-/* Estilo del recuadro de cada ciudad */
-.clock {
-    background-color: rgba(255, 255, 255, 0.4);
-    border-radius: 15px;
-    padding: 20px;
-    margin: 20px 0;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
     align-items: center;
-    text-decoration: none;
-    color: inherit;
+    gap: 20px;
+    padding: 20px;
     width: 100%;
-    position: relative;
 }
 
-/* Contenedor para la información de la ciudad (nombre, hora y clima) */
+/* Recuadro de cada ciudad */
+.city-card {
+    position: relative;
+    display: block;
+    width: 300px;
+    height: 400px;
+    border-radius: 8px;
+    text-decoration: none;
+    overflow: hidden;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.city-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Nombre de la ciudad */
+.city-name {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #ff4081;
+    text-transform: uppercase;
+    z-index: 1;
+}
+
+/* Imagen de la ciudad */
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Información de la ciudad */
 .city-info {
     position: absolute;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    text-align: center;
-    z-index: 2;
-}
-
-/* Nombre de la ciudad sobre la imagen (mayúsculas y más grande) */
-.city-name {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: #ff6347;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
-    text-transform: uppercase;
-}
-
-/* Estilo para las imágenes de cada ciudad */
-.clock img {
-    width: 100%; /* Hacemos que la imagen ocupe el 100% del recuadro */
-    height: 100%; /* Aseguramos que la imagen cubra todo el recuadro */
-    object-fit: cover; /* Asegura que la imagen cubra todo el recuadro sin deformarse */
-    border-radius: 10px;
-}
-
-/* Información de la hora */
-.time-info {
-    margin-top: 10px;
-    font-size: 1.8rem;
-    color: #ff6347;
-}
-
-/* Hora */
-p {
-    font-size: 3rem;
-    font-weight: bold;
-    color: #ff6347;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
-}
-
-/* Contenedor para las temperaturas (en la parte inferior de cada imagen) */
-.weather-info {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    position: absolute;
     bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2;
+    left: 10px;
+    z-index: 1;
 }
 
-/* Ajuste para que las temperaturas estén mejor alineadas */
-.weather-info span {
-    font-size: 2rem;
-    color: #ff6347; /* Color rojo, igual que la hora */
-    margin: 0 10px; /* Reducido margen para las temperaturas */
+.time {
+    font-size: 26px;
+    font-weight: bold;
+    color: #ff4081;
 }
 
-/* Efectos al pasar el mouse sobre las ciudades */
-.clock:hover {
-    transform: translateY(-10px);
+.weather {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ff4081;
 }
 
-/* Quitar subrayado de los enlaces */
-a {
-    text-decoration: none;
+/* Para pantallas más pequeñas */
+@media (max-width: 768px) {
+    .city-card {
+        width: 90%;
+        max-width: 300px;
+    }
+
+    h1 {
+        font-size: 36px;
+    }
+
+    .city-name {
+        font-size: 24px;
+    }
+
+    .time {
+        font-size: 22px;
+    }
+
+    .weather {
+        font-size: 18px;
+    }
 }

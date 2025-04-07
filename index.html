@@ -1,7 +1,5 @@
-
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,71 +7,57 @@
     <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Pacifico&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-    <div class="main-title">
+    <div class="header">
         <h1>LUNA DE MIEL</h1>
     </div>
 
     <div class="container">
-        <a href="https://www.civitatis.com/es/madrid/" class="clock" id="madrid">
-            <div class="city-info">
-                <div class="city-name">MADRID</div>
-                <div class="time-info">
-                    <p id="madrid-time">00:00</p>
-                </div>
-            </div>
+        <!-- Ciudad Madrid -->
+        <a href="https://www.civitatis.com/es/madrid/" class="city-card" id="madrid">
+            <div class="city-name">MADRID</div>
             <img src="imagenes/madrid.jpg" alt="Madrid">
-            <div class="weather-info">
-                <span id="madrid-today-max"></span> | <span id="madrid-today-min"></span>
-                <span id="madrid-next-max"></span> | <span id="madrid-next-min"></span>
+            <div class="city-info">
+                <p class="time" id="madrid-time">00:00</p>
+                <p class="weather" id="madrid-today-max">--°C | --°C</p>
+                <p class="weather" id="madrid-next-max">--°C | --°C</p>
             </div>
         </a>
 
-        <a href="https://www.civitatis.com/es/new-york/" class="clock" id="newyork">
-            <div class="city-info">
-                <div class="city-name">NEW YORK</div>
-                <div class="time-info">
-                    <p id="newyork-time">00:00</p>
-                </div>
-            </div>
+        <!-- Ciudad New York -->
+        <a href="https://www.civitatis.com/es/new-york/" class="city-card" id="newyork">
+            <div class="city-name">NEW YORK</div>
             <img src="imagenes/newyork.jpg" alt="New York">
-            <div class="weather-info">
-                <span id="newyork-today-max"></span> | <span id="newyork-today-min"></span>
-                <span id="newyork-next-max"></span> | <span id="newyork-next-min"></span>
+            <div class="city-info">
+                <p class="time" id="newyork-time">00:00</p>
+                <p class="weather" id="newyork-today-max">--°C | --°C</p>
+                <p class="weather" id="newyork-next-max">--°C | --°C</p>
             </div>
         </a>
 
-        <a href="https://www.civitatis.com/es/las-vegas/" class="clock" id="vegas">
-            <div class="city-info">
-                <div class="city-name">LAS VEGAS</div>
-                <div class="time-info">
-                    <p id="vegas-time">00:00</p>
-                </div>
-            </div>
+        <!-- Ciudad Las Vegas -->
+        <a href="https://www.civitatis.com/es/las-vegas/" class="city-card" id="vegas">
+            <div class="city-name">LAS VEGAS</div>
             <img src="imagenes/vegas.jpg" alt="Las Vegas">
-            <div class="weather-info">
-                <span id="vegas-today-max"></span> | <span id="vegas-today-min"></span>
-                <span id="vegas-next-max"></span> | <span id="vegas-next-min"></span>
+            <div class="city-info">
+                <p class="time" id="vegas-time">00:00</p>
+                <p class="weather" id="vegas-today-max">--°C | --°C</p>
+                <p class="weather" id="vegas-next-max">--°C | --°C</p>
             </div>
         </a>
 
-        <a href="https://www.civitatis.com/es/cancun/" class="clock" id="cancun">
-            <div class="city-info">
-                <div class="city-name">CANCÚN</div>
-                <div class="time-info">
-                    <p id="cancun-time">00:00</p>
-                </div>
-            </div>
+        <!-- Ciudad Cancún -->
+        <a href="https://www.civitatis.com/es/cancun/" class="city-card" id="cancun">
+            <div class="city-name">CANCÚN</div>
             <img src="imagenes/cancun.jpg" alt="Cancún">
-            <div class="weather-info">
-                <span id="cancun-today-max"></span> | <span id="cancun-today-min"></span>
-                <span id="cancun-next-max"></span> | <span id="cancun-next-min"></span>
+            <div class="city-info">
+                <p class="time" id="cancun-time">00:00</p>
+                <p class="weather" id="cancun-today-max">--°C | --°C</p>
+                <p class="weather" id="cancun-next-max">--°C | --°C</p>
             </div>
         </a>
     </div>
 
     <script src="script.js"></script>
 </body>
-
 </html>

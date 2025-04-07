@@ -16,10 +16,8 @@ function obtenerTemperaturas(ciudad, idCiudad) {
             const tempMananaMin = data.forecast.forecastday[1].day.mintemp_c;
 
             // Actualizar el HTML con las temperaturas
-            document.getElementById(`${idCiudad}-today-max`).textContent = `${tempHoyMax}°C`;
-            document.getElementById(`${idCiudad}-today-min`).textContent = `${tempHoyMin}°C`;
-            document.getElementById(`${idCiudad}-next-max`).textContent = `${tempMananaMax}°C`;
-            document.getElementById(`${idCiudad}-next-min`).textContent = `${tempMananaMin}°C`;
+            document.getElementById(`${idCiudad}-today-max`).textContent = `${tempHoyMax}°C | ${tempHoyMin}°C`;
+            document.getElementById(`${idCiudad}-next-max`).textContent = `${tempMananaMax}°C | ${tempMananaMin}°C`;
         })
         .catch(error => console.error('Error al obtener los datos del clima:', error));
 }
@@ -33,18 +31,24 @@ function actualizarHora() {
     const horaNewYork = new Date().toLocaleString("en-US", { ...opciones, timeZone: 'America/New_York' });  // Hora de Nueva York
     const horaVegas = new Date().toLocaleString("en-US", { ...opciones, timeZone: 'America/Los_Angeles' });  // Hora de Las Vegas
     const horaCancun = new Date().toLocaleString("es-MX", { ...opciones, timeZone: 'America/Cancun' });  // Hora de Cancún
-    
-    // Actualizamos la hora de cada ciudad
+
     document.getElementById('madrid-time').textContent = horaMadrid;
     document.getElementById('newyork-time').textContent = horaNewYork;
     document.getElementById('vegas-time').textContent = horaVegas;
     document.getElementById('cancun-time').textContent = horaCancun;
 }
 
-// Ejecutamos la función cada segundo para actualizar la hora
-setInterval(actualizarHora, 1000);
+// Llamada para actualizar la hora y las temperaturas
+setInterval(() => {
+    actualizarHora();
+    obtenerTemperaturas('Madrid', 'madrid');
+    obtenerTemperaturas('New York', 'newyork');
+    obtenerTemperaturas('Las Vegas', 'vegas');
+    obtenerTemperaturas('Cancun', 'cancun');
+}, 60000);
 
-// Llamamos a la función para obtener las temperaturas de cada ciudad
+// Ejecutar la función una vez al cargar la página
+actualizarHora();
 obtenerTemperaturas('Madrid', 'madrid');
 obtenerTemperaturas('New York', 'newyork');
 obtenerTemperaturas('Las Vegas', 'vegas');
